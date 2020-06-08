@@ -1,0 +1,2 @@
+rootProject.name='Number Theory Tool'
+include ':app'

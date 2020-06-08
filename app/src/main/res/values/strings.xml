@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Number Theory Tool</string>
+    <string name="moduli_value">Modulus Value</string>
+    <string name="calculate_mod_table">Calculate Mod Table</string>
+</resources>
