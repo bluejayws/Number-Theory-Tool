@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -32,10 +35,46 @@ public class MainActivity extends AppCompatActivity {
                 modTable.add(tableRow(a,modulus,true)); //We've reached the final row, the row that shows index.
             }
         }
+        //Optimize later
+        //Convert 2D to array of strings
+        ArrayList<String> modTableStrings = modTableToString(modTable);
+        //Very hacky
+        String tableNewLine = modtableNewLine(modTableStrings);
+
         //Show table
         //For now just import text to a string then show it on android
+        //Set content view
+        //DisplayTable dT = new DisplayTable();
+        //setContentView(R.id.display_mod_table);
+        TextView table = (TextView) findViewById(R.id.display_mod_table);
+        table.setText(tableNewLine);
+        setContentView(table);
 
 
+
+    }
+
+    private String modtableNewLine(ArrayList<String> modTableStrings) {
+        StringBuilder newLines = new StringBuilder();
+        for(String s : modTableStrings){
+            newLines.append(s);
+            newLines.append("\n");
+        }
+        return newLines.toString();
+    }
+
+    private ArrayList<String> modTableToString(ArrayList<ArrayList<Integer>> modTable) {
+        ArrayList<String> modtableString = new ArrayList<>();
+        for(ArrayList<Integer> row : modTable){
+            StringBuilder rowString = new StringBuilder();
+            for(Integer i : row){
+                rowString.append(i);
+                rowString.append(" ");
+            }
+            modtableString.add(rowString.toString());
+
+        }
+        return modtableString;
     }
 
     //Calculates a single row in our modulo table, returns index if it's the final one
